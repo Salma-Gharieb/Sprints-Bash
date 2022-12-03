@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+if [ -d ~/reports ]
+then
+        echo "reports directory exists"
+
+        if [ -f ~/reports/report-$(date +%y-%m-%d).xls ]
+        then
+                echo "Files exist"
+        else
+                touch ~/reports/report-$(date +%y-%m-%d).xls
+                echo "Files created successfully"
+        fi
+else
+        mkdir ~/reports
+        touch ~/reports/report-$(date +%y-%m-%d).xls
+        echo "directory and files created successfully"
+fi
+
+if  [ -f reports-$(date +%y-%m-%d).tar ]
+then
+        echo "you have already backedup your reports"
+else
+        tar -cf reports-$(date +%y-%m-%d).tar ~/reports
+        echo "reports backed up successfully"   
+fi
